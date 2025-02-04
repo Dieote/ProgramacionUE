@@ -53,7 +53,7 @@ public class mainCoche {
                     }
                     break;
                 case 2:
-                     System.out.println("Que marca quiere buscar.");
+                     System.out.println("Que marca de coche quiere buscar.");
                     String buscarMarca = input.nextLine();
 
                     boolean coincide = false;
@@ -94,7 +94,7 @@ public class mainCoche {
                        
                         Coche ganador = circuito.iniciarCarrera();
                        if (ganador != null) {
-                         System.out.println("!* !* !* FINAL DE LA CARRERA *¡ *¡ *¡");
+                         System.out.println("!* !* !* DATOS DE LA CARRERA *¡ *¡ *¡");
                          System.out.printf("!* GANADOR %s *¡%n", ganador); 
                        }
                         break;                   

@@ -83,14 +83,20 @@ public class Carrera {
             }
 
             //distancia
-           while(true) {
+               ganador = corredores.get(0);
                for (Coche coche : corredores) {
                     if (coche.getKmRecorridos() >= kmTotales) {
                         this.ganador = coche;
                         System.out.println("%n ¡¡ El ganador es el coche con Matricula: " + ganador.getMatricula() + " !!");
                         return ganador;
                }
-           }
-        }
+               // Si ninguna condición de victoria se cumple, gana el coche con más km recorridos
+               if (coche.getKmRecorridos() > ganador.getKmRecorridos()) {
+                   ganador = coche;
+                }
+            }
+            System.out.printf("%n !!! CARRERA FINALIZADA ¡¡¡ %n");
+            return ganador;
+
     }
 }
