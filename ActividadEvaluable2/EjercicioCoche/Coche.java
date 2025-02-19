@@ -51,10 +51,8 @@ public class Coche {
     }
 
     public String toString() {
-        return "Marca: " + marca + " - Modelo: " + modelo + " - Potencia: " + cv + " - Cilindrada:  " + cc + " - Matricula: " + matricula +
-                " - Velocidad: " + velocidad + " - Kilometros: " + kmRecorridos;
+        return "-> Coche " + marca + " " + modelo + " - Potencia: " + cv + " - Cilindrada:  " + cc + " - Matricula: " + matricula;
     }
-
 
     public String getMarca() {
         return marca;
@@ -66,6 +64,14 @@ public class Coche {
 
     public double getKmRecorridos() {
         return kmRecorridos;
+    }
+
+    public double getVelocidad() {
+        return velocidad;
+    }
+
+    public String getModelo() {
+        return modelo;
     }
 }
 

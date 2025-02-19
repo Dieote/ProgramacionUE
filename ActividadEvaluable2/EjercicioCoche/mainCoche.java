@@ -17,20 +17,21 @@ public class mainCoche {
 
 
         do {
+            System.out.println();
             System.out.println("<----- MENÚ  App de Carreras----->");
             System.out.println("1. Agregar coches.");
             System.out.println("2. Buscar coche por marca.");
             System.out.println("3. Listar coches.");
             System.out.println("4. Iniciar carrera.");
             System.out.println("5. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.printf("%nSeleccione una opción: ");
             option = input.nextInt();
             input.nextLine();
 
 
             switch (option) {
                 case 1:
-                    System.out.println("** Agregar **");
+                    System.out.println("** Agregar coche nuevo **");
 
                     for (int i = 0; i <= 0; i++) { 
                         System.out.println("Coche " + (i + 1) + ":");
@@ -53,7 +54,7 @@ public class mainCoche {
                     }
                     break;
                 case 2:
-                     System.out.println("Que marca de coche quiere buscar.");
+                     System.out.println("Que marca de coche quiere buscar.??");
                     String buscarMarca = input.nextLine();
 
                     boolean coincide = false;
@@ -61,7 +62,7 @@ public class mainCoche {
                     for (Coche coche : cocheStock) {
                         if (coche.getMarca().equalsIgnoreCase(buscarMarca)) {
                             coincide = true;
-                            System.out.println("Coincide la busqueda." + coche);
+                            System.out.println("Coincide la busqueda - " + coche);
                         }
                     }
                     if (!coincide) {
@@ -69,7 +70,7 @@ public class mainCoche {
                     }
                     break;
                 case 3:
-                    System.out.println("** Listar **");
+                    System.out.println("** Listado de coches **");
                     for (Coche coche : cocheStock) {
                         System.out.println(coche.listarCoches());
                     }
@@ -95,7 +96,7 @@ public class mainCoche {
                         Coche ganador = circuito.iniciarCarrera();
                        if (ganador != null) {
                          System.out.println("!* !* !* DATOS DE LA CARRERA *¡ *¡ *¡");
-                         System.out.printf("!* GANADOR %s *¡%n", ganador); 
+                         System.out.printf("!* GANADOR %s %s - Matricula: %s *¡%n", ganador.getMarca(), ganador.getModelo() ,ganador.getMatricula()); 
                        }
                         break;                   
                 case 5:
