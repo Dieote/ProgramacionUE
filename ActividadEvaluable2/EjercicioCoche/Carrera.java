@@ -89,7 +89,7 @@ public class Carrera {
                     if (coche.getKmRecorridos() >= kmTotales) {
                         this.ganador = coche;
                         System.out.printf("%n ¡¡ El ganador por llegar primero a los kilometros !!%n");
-                        System.out.printf("%n ## Matricula: %s - Coche: %s !!" + ganador.getMatricula(), ganador.getMarca());
+                        System.out.printf("%n ## Matricula: %s - Coche: %s !!", ganador.getMatricula(), ganador.getMarca());
                         return ganador;
                }
                // Si ninguna condición de victoria se cumple, gana el coche con más km recorridos

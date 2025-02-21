@@ -95,6 +95,7 @@ public class mainCoche {
                        
                         Coche ganador = circuito.iniciarCarrera();
                        if (ganador != null) {
+                           System.out.println();
                          System.out.println("!* !* !* DATOS DE LA CARRERA *¡ *¡ *¡");
                          System.out.printf("!* GANADOR %s %s - Matricula: %s *¡%n", ganador.getMarca(), ganador.getModelo() ,ganador.getMatricula()); 
                        }
