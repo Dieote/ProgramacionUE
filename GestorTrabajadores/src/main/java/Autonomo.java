@@ -1,8 +1,9 @@
 import lombok.Data;
 @Data
-abstract public class Autonomo extends Trabajador {
+public class Autonomo extends Trabajador {
 
-    public boolean contratado = true;
+    private boolean contratado;
+    private double comision = 0.50;
 
     public Autonomo(boolean contratado) {
         this.contratado = contratado;
@@ -16,5 +17,15 @@ abstract public class Autonomo extends Trabajador {
     @Override
     public String toString(){
         return super.toString() + " | Tipo: Autónomo";
+    }
+
+    public boolean estaContratado(){
+        return contratado;
+    }
+
+    @Override
+    public void calcularSalarioMensual(){
+        double salarioMes = getSalario() * comision;
+        System.out.println("El salario mensual de autonomo es -€ " + salarioMes);
     }
 }

@@ -1,10 +1,11 @@
 import lombok.Data;
 
 @Data
-abstract public class Asalariado extends Trabajador {
+public class Asalariado extends Trabajador {
 
-    public int numeroDePagas;
-    public boolean contratado = true;
+    private int numeroDePagas;
+    private boolean contratado;
+    private double retenciones;
 
     public Asalariado(boolean contratado, int numeroDePagas) {
         this.contratado = contratado;
@@ -17,11 +18,17 @@ abstract public class Asalariado extends Trabajador {
         this.numeroDePagas = numeroDePagas;
     }
 
-    public double calcularSalarioMensual() {
-        return getSalario() / getNumeroDePagas();
+    public boolean estaContratado(){
+        return contratado;
+    }
+
+    @Override
+    public void calcularSalarioMensual() {
+        double salarioMes = (getSalario()-(getSalario()*retenciones))/ numeroDePagas;
+        System.out.println("El salario mensual es: "+salarioMes);
     }
     @Override
     public String toString(){
-       return super.toString() + " | Numero de Pagas: " + numeroDePagas + " | Salario Mensual: " + calcularSalarioMensual();
+       return super.toString() + " | Numero de Pagas: " + numeroDePagas + " | Retenciones: " + retenciones;
     }
 }
