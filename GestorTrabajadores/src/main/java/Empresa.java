@@ -12,13 +12,15 @@ public class Empresa {
 
     public void RegistrarTrabajador(Trabajador empleado){
         empleados.add(empleado);
+        System.out.println("** Agregando empleado... **");
     }
 
-    public void DespedirTrabajador(Trabajador empleado){
-        empleados.remove(empleado);
+    public void DespedirTrabajador(String dni){
+        empleados.removeIf(trabajador -> trabajador.getDni().equals(dni));
+        System.out.println("** Eliminando empleado... **");
     }
 
-    public void ListarEmpleados(Trabajador empleado){
+    public void ListarEmpleados(){
         System.out.println("** Listado de empleados **");
         for (Trabajador empleado : empleados) {
             System.out.println(empleado.ListarTrabajador());

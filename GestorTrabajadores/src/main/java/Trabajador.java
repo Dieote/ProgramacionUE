@@ -3,10 +3,10 @@ import lombok.Data;
 @Data
 abstract public class Trabajador {
 
-    public String nombre;
-    public String apellido;
-    public String dni;
-    public double salario;
+    private String nombre;
+    private String apellido;
+    private String dni;
+    private double salario;
 
     public Trabajador() {}
 
@@ -15,10 +15,6 @@ abstract public class Trabajador {
         this.apellido = apellido;
         this.dni = dni;
         this.salario = salario;
-    }
-
-    public String ListarTrabajador(){
-        return toString();
     }
 
     @Override

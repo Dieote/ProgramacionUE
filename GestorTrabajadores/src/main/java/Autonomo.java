@@ -12,4 +12,9 @@ abstract public class Autonomo extends Trabajador {
         super(nombre, apellido, dni, salario);
         this.contratado = contratado;
     }
+
+    @Override
+    public String toString(){
+        return super.toString() + " | Tipo: Autónomo";
+    }
 }

@@ -16,4 +16,12 @@ abstract public class Asalariado extends Trabajador {
         this.contratado = contratado;
         this.numeroDePagas = numeroDePagas;
     }
+
+    public double calcularSalarioMensual() {
+        return getSalario() / getNumeroDePagas();
+    }
+    @Override
+    public String toString(){
+       return super.toString() + " | Numero de Pagas: " + numeroDePagas + " | Salario Mensual: " + calcularSalarioMensual();
+    }
 }
