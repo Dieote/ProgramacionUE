@@ -15,8 +15,8 @@ public class Autonomo extends Trabajador {
     }
 
     @Override
-    public String toString(){
-        return super.toString() + " | Tipo: Autónomo";
+    public void mostrarInfo(){
+        System.out.println(super.toString() + " | Tipo: Autónomo");
     }
 
     public boolean estaContratado(){

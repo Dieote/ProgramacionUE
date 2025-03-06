@@ -1,19 +1,11 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        ArrayList<Trabajador> empleados = new ArrayList<>();
-        int option;
-        boolean hayJefe = false; // Controla si ya hay un jefe en la empresa
-        boolean coincide;
-
-
-//        Trabajador asalariado = new Asalariado("Diego","Lopez","xxx0001",998.32,true,12);
-//        Trabajador autonomo = new Autonomo("Elena","Gomez","xxx0011",1129.23,true);
-//        Trabajador jefe = new Jefe("Laura", "Woolfi","xxx0111",1310.12,4.5);
+        Empresa empresa = new Empresa();
+        int option, tipo;
 
         do {
             System.out.println();
@@ -28,68 +20,115 @@ public class Main {
             option = input.nextInt();
             input.nextLine();
 
-            switch (option){
+            switch (option) {
                 case 1:
-                    System.out.println("** Agregar empleado nuevo **");
-                    System.out.println("Seleccione el tipo de empleado: ");
-                    System.out.println("1. Jefe");
-                    System.out.println("2. Asalariado");
-                    System.out.println("3. Autónomo");
-                    int tipo = input.nextInt();
+                    System.out.println("Seleccione el tipo de trabajador a registrar:");
+                    System.out.println("1. Asalariado");
+                    System.out.println("2. Autónomo");
+                    System.out.println("3. Jefe");
+                    System.out.print("Opción: ");
+                    tipo = input.nextInt();
+                    input.nextLine();
+                    System.out.println("Ingrese los datos del trabajador::");
+                    System.out.print("Ingrese nombre: ");
+                    String nombre = input.nextLine();
+                    System.out.print("Ingrese apellido: ");
+                    String apellido = input.nextLine();
+                    System.out.print("Ingrese DNI: ");
+                    String dni = input.nextLine();
+                    System.out.print("Ingrese salario: ");
+                    double salario = input.nextDouble();
                     input.nextLine();
 
-                    System.out.print("Nombre: ");
-                    String nombre = input.nextLine();
-                    System.out.print("Apellido: ");
-                    String apellido = input.nextLine();
-                    System.out.print("DNI: ");
-                    String dni = input.nextLine();
+                    Trabajador trabajadorNuevo = null;
 
+                    if (tipo == 1) {
+                        System.out.print("Ingrese número de pagas: ");
+                        int numeroPagas = input.nextInt();
+                        input.nextLine();
+                        trabajadorNuevo = new Asalariado(nombre, apellido, dni, salario, true, numeroPagas);
+                    } else if (tipo == 2) {
+                        trabajadorNuevo = new Autonomo(nombre, apellido, dni, salario, true);
+                    } else if (tipo == 3) {
+                        System.out.print("Ingrese el porcentaje de acciones: ");
+                        double acciones = input.nextDouble();
+                        input.nextLine();
+                        trabajadorNuevo = new Jefe(nombre, apellido, dni, salario, acciones);
+                    } else {
+                        System.out.println("Opción no válida.");
+                        break;
+                    }
+                    empresa.RegistrarTrabajador(trabajadorNuevo);
                     break;
+
                 case 2:
                     System.out.println("** Buscar empleado por NOMBRE. **");
-                        String buscarNombre = input.nextLine();
-                        coincide = false;
+                    System.out.println("Ingrese nombre a buscar:.");
+                    String nombreABuscar = input.nextLine();
+                    Trabajador empleadoPorNombre = empresa.buscarNombre(nombreABuscar);
 
-                        for (Trabajador trabajador : empleados){
-                            if (trabajador.getNombre().equalsIgnoreCase(buscarNombre)){
-                                coincide = true;
-                                System.out.println("La busqueda coincide con # " + trabajador.toString());
-                            }
-                        } if (!coincide){
-                            System.out.println("No hay coincidencias en la busqueda.");
-                         }
+                    if (empleadoPorNombre != null) {
+                        System.out.println("La busqueda coincide con # ");
+                        empleadoPorNombre.mostrarInfo();
+                    } else {
+                        System.out.println("No hay coincidencias en la busqueda por nombre.");
+                     }
                     break;
                 case 3:
                     System.out.println("** Buscar empleado por DNI. **");
-                    String buscarDni = input.nextLine();
-                    coincide = false;
+                    System.out.println("Ingrese nombre a buscar:.");
+                    String dniABuscar = input.nextLine();
+                    Trabajador empleadoPorDni = empresa.buscarDni(dniABuscar);
 
-                    for (Trabajador trabajador : empleados){
-                        if (trabajador.getDni().equalsIgnoreCase(buscarDni)){
-                            coincide = true;
-                            System.out.println("La busqueda coincide con # " + trabajador.toString());
-                        }
-                    } if (!coincide){
-                    System.out.println("No hay coincidencias en la busqueda.");
-                        }
+                    if (empleadoPorDni != null) {
+                        System.out.println("La busqueda coincide con # ");
+                        empleadoPorDni.mostrarInfo();
+                    } else {
+                     System.out.println("No hay coincidencias en la busqueda por DNI.");
+                    }
                     break;
                 case 4:
-                    System.out.println("** Listar empleados. **");
-                    for (Trabajador trabajador : empleados){
-                        System.out.println(trabajador.toString());
-                        }
+                    System.out.println("¿Qué tipo de empleados desea listar?");
+                    System.out.println("1. Todos");
+                    System.out.println("2. Asalariados");
+                    System.out.println("3. Autónomos");
+                    System.out.print("Seleccione una opción: ");
+
+                    tipo = input.nextInt();
+                    input.nextLine();
+                    seleccionarTipoEmpleado(empresa, tipo);
                     break;
                 case 5:
                     System.out.println("** Eliminar empleado **");
-
-
+                    System.out.println("Ingrese un DNI para eliminar el empleado: ");
+                    String dniAEliminar = input.nextLine();
+                    empresa.DespedirTrabajador(dniAEliminar);
                     break;
                 case 6:
                     System.out.println("Saliendo del programa");
                     break;
             }
         } while (option != 6);
-            input.close();
+        input.close();
+    }
+
+public static void seleccionarTipoEmpleado(Empresa empresa, int tipo) {
+     if (tipo == 1) {
+        empresa.ListarEmpleados();
+    }else if (tipo == 2) {
+        for (Trabajador trabajador : empresa.getEmpleados()) {
+            if (trabajador instanceof Asalariado) {
+                trabajador.mostrarInfo();
+            }
+        }
+    } else if (tipo == 3) {
+        for (Trabajador trabajador : empresa.getEmpleados()) {
+            if (trabajador instanceof Autonomo) {
+                trabajador.mostrarInfo();
+            }
+        }
+    }else {
+        System.out.println("Opcion no valida.");
     }
 }
+    }

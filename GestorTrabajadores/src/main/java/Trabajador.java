@@ -21,10 +21,9 @@ abstract public class Trabajador {
 
     public abstract void calcularSalarioMensual();
 
-    @Override
-    public String toString() {
-        return "** Trabajador:" + "Nombre='" + nombre + " " + apellido + '\'' +
-                ", DNI= Nº " + dni  + ", Salario=" + salario + ".";
+    public void mostrarInfo() {
+        System.out.println("** Trabajador: " + "Nombre='" + nombre + " " + apellido +
+                ", DNI= Nº " + dni  + ", Salario=" + salario + ".");
     }
 
     private static boolean existeDni(ArrayList<Trabajador> empleados, String dni){

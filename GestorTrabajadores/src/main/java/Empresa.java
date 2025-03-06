@@ -6,21 +6,20 @@ public class Empresa {
 
     private ArrayList<Trabajador> empleados;
 
-    public Empresa(ArrayList<Trabajador> empleados) {
-        this.empleados = empleados;
+    public Empresa() {
+        this.empleados = new ArrayList<>();
     }
 
-    public void RegistrarTrabajador(Trabajador empleado){
+    public void RegistrarTrabajador(Trabajador empleado) {
         System.out.println("** Agregando empleado... **");
-        if (empleado instanceof Jefe){
-            if (hayJefe()){
+        if (empleado instanceof Jefe) {
+            if (hayJefe()) {
                 System.out.println("Ya existe un jefe en la empresa.");
-            } else {
-                empleados.add(empleado);
+                return;
             }
-        } else {
-            empleados.add(empleado);
         }
+        empleados.add(empleado);
+        System.out.println("Empleado registrado correctamente.");
     }
 
     private boolean hayJefe(){
@@ -33,19 +32,29 @@ public class Empresa {
     }
 
     public void DespedirTrabajador(String dni){
-        empleados.removeIf(trabajador -> trabajador.getDni().equals(dni));
+        boolean eliminado = empleados.removeIf(trabajador -> trabajador.getDni().equals(dni));
         System.out.println("** Eliminando empleado... **");
+        if (eliminado) {
+            System.out.println("Empleado con DNI-" + dni + " eliminado correctamente.");
+        } else {
+            System.out.println("Empleado no encontrado.");
+        }
     }
 
     public void ListarEmpleados() {
+        if (empleados.isEmpty()) {
+            System.out.println("No hay empleados registrados.");
+            return;
+        }
         System.out.println("** Listado de empleados **");
         for (Trabajador empleado : empleados) {
-            System.out.println(empleado.toString());
+            empleado.mostrarInfo();
         }
     }
+
     public Trabajador buscarDni(String dni){
             for (Trabajador empleado : empleados){
-                if (empleado.getDni() == dni){
+                if (empleado.getDni().equals(dni)){
                     return empleado;
                 }
             }
@@ -54,7 +63,7 @@ public class Empresa {
 
     public Trabajador buscarNombre(String nombre){
         for (Trabajador empleado : empleados){
-            if (empleado.getNombre() == nombre){
+            if (empleado.getNombre().equalsIgnoreCase(nombre)){
                 return empleado;
             }
         }

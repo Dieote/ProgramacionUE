@@ -5,7 +5,7 @@ public class Asalariado extends Trabajador {
 
     private int numeroDePagas;
     private boolean contratado;
-    private double retenciones;
+    private double retenciones = 0.15;
 
     public Asalariado(boolean contratado, int numeroDePagas) {
         this.contratado = contratado;
@@ -28,7 +28,7 @@ public class Asalariado extends Trabajador {
         System.out.println("El salario mensual es: "+salarioMes);
     }
     @Override
-    public String toString(){
-       return super.toString() + " | Numero de Pagas: " + numeroDePagas + " | Retenciones: " + retenciones;
+    public void mostrarInfo() {
+        System.out.println(super.toString() + " | Numero de Pagas: " + numeroDePagas + " | Retenciones: " + retenciones);
     }
 }

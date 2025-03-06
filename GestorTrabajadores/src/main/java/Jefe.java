@@ -16,8 +16,8 @@ public class Jefe extends Trabajador {
     }
 
     @Override
-    public String toString(){
-        return super.toString() + " | Acciones: %" + acciones + " | Rol: " + rol;
+    public void mostrarInfo(){
+        System.out.println(super.toString() + " | Acciones: %" + acciones + " | Rol: " + rol);
     }
 
     @Override
