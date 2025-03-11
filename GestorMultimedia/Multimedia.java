@@ -6,27 +6,27 @@ abstract public class Multimedia {
     public int identificador;
     public String titulo;
     public String autor;
-    public double tamaño;
+    public double tamanio;
     public String formato;
 
 
     public Multimedia() {
     }
 
-    public Multimedia(String formato, double tamaño, String autor, String titulo, int identificador) {
-        this.formato = formato;
-        this.tamaño = tamaño;
-        this.autor = autor;
-        this.titulo = titulo;
+    public Multimedia(int identificador, String titulo, String autor, String formato, double tamanio) {
         this.identificador = identificador;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.formato = formato;
+        this.tamanio = tamanio;
     }
 
-    public String mostrarInfo() {
+        public String mostrarInfo() {
         return "Multimedia: " +
                 "ID - " + identificador +
                 ", Titulo='" + titulo + '\'' +
                 ", Autor='" + autor + '\'' +
-                ", Tamaño=" + tamaño +
+                ", Tamaño=" + tamanio +
                 ", Formato='" + formato;
     }
 }

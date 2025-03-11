@@ -8,8 +8,8 @@ public class Video extends Multimedia{
     public Video() {
     }
 
-    public Video(String formato, double tamaño, String autor, String titulo, int identificador, String director, String actores) {
-        super(formato, tamaño, autor, titulo, identificador);
+    public Video(int identificador, String titulo, String autor, String formato, double tamanio, String director, String actores) {
+        super(identificador, titulo, autor, formato, tamanio);
         this.director = director;
         this.actores = actores;
     }
