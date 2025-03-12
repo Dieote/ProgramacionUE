@@ -1,20 +1,23 @@
 import lombok.Data;
+
+import java.util.List;
+
 @Data
 public class Video extends Multimedia{
 
-    public String director;
-    public String actores;
+    private Director director;
+    private List<Actor> actores;
 
     public Video() {
     }
 
-    public Video(int identificador, String titulo, String autor, String formato, double tamanio, String director, String actores) {
-        super(identificador, titulo, autor, formato, tamanio);
+    public Video(Director director, List<Actor> actores) {
         this.director = director;
         this.actores = actores;
     }
 
-    public Video(String director, String actores) {
+    public Video(int id, String titulo, String autor, String formato, double tamanio, Director director, List<Actor> actores) {
+        super(id, titulo, autor, formato, tamanio);
         this.director = director;
         this.actores = actores;
     }
@@ -22,6 +25,6 @@ public class Video extends Multimedia{
     @Override
     public String mostrarInfo() {
         return super.mostrarInfo() + ", Director=" + director +
-                ", Actores=" + actores;
+                ", Artistas=" + actores;
     }
 }

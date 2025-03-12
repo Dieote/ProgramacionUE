@@ -3,14 +3,14 @@ import lombok.Data;
 @Data
 public class Audio extends Multimedia{
 
-    public double duracion;
-    public String soporte;
+    private double duracion;
+    private String soporte;
 
     public Audio() {
     }
 
-    public Audio(int identificador, String titulo, String autor, String formato, double tamanio, double duracion, String soporte) {
-        super(identificador, titulo, autor, formato, tamanio);
+    public Audio(int id, String titulo, String autor, String formato, double tamanio, double duracion, String soporte) {
+        super(id, titulo, autor, formato, tamanio);
         this.duracion = duracion;
         this.soporte = soporte;
     }

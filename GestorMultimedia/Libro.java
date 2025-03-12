@@ -2,8 +2,8 @@ import lombok.Data;
 @Data
 public class Libro extends Multimedia{
 
-    public String ISBN;
-    public int numeroPaginas;
+    private String ISBN;
+    private int numeroPaginas;
 
     public Libro() {
     }
@@ -13,8 +13,8 @@ public class Libro extends Multimedia{
         this.numeroPaginas = numeroPaginas;
     }
 
-    public Libro(int identificador, String titulo, String autor, String formato, double tamanio, String ISBN, int numeroPaginas) {
-        super(identificador, titulo, autor, formato, tamanio);
+    public Libro(int id, String titulo, String autor, String formato, double tamanio, String ISBN, int numeroPaginas) {
+        super(id, titulo, autor, formato, tamanio);
         this.ISBN = ISBN;
         this.numeroPaginas = numeroPaginas;
     }
