@@ -12,12 +12,12 @@ abstract public class Multimedia {
     public Multimedia() {
     }
 
-    public Multimedia(int id, String titulo, String autor, String formato, double tamanio) {
+    public Multimedia(int id, String titulo, String autor, double tamanio, String formato) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
-        this.formato = formato;
         this.tamanio = tamanio;
+        this.formato = formato;
     }
 
     public String mostrarInfo() {

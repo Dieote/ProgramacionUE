@@ -13,8 +13,8 @@ public class Libro extends Multimedia{
         this.numeroPaginas = numeroPaginas;
     }
 
-    public Libro(int id, String titulo, String autor, String formato, double tamanio, String ISBN, int numeroPaginas) {
-        super(id, titulo, autor, formato, tamanio);
+    public Libro(int id, String titulo, String autor, double tamanio, String formato, String ISBN, int numeroPaginas) {
+        super(id, titulo, autor, tamanio, formato);
         this.ISBN = ISBN;
         this.numeroPaginas = numeroPaginas;
     }

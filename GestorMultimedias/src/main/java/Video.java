@@ -16,8 +16,8 @@ public class Video extends Multimedia{
         this.actores = actores;
     }
 
-    public Video(int id, String titulo, String autor, String formato, double tamanio, Director director, List<Actor> actores) {
-        super(id, titulo, autor, formato, tamanio);
+    public Video(int id, String titulo, String autor, double tamanio, String formato, Director director, List<Actor> actores) {
+        super(id, titulo, autor, tamanio, formato);
         this.director = director;
         this.actores = actores;
     }

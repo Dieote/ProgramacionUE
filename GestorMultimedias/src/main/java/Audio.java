@@ -9,8 +9,8 @@ public class Audio extends Multimedia{
     public Audio() {
     }
 
-    public Audio(int id, String titulo, String autor, String formato, double tamanio, double duracion, String soporte) {
-        super(id, titulo, autor, formato, tamanio);
+    public Audio(int id, String titulo, String autor, double tamanio, String formato, double duracion, String soporte) {
+        super(id, titulo, autor, tamanio, formato);
         this.duracion = duracion;
         this.soporte = soporte;
     }
