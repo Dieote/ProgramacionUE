@@ -15,6 +15,6 @@ public class Director {
     }
 
     public String mostrarDatosDirector(){
-        return "Nombre Director: " + nombreDirector + "DNI: " + directorDni;
+        return "Nombre Director: " + nombreDirector + " - DNI: " + directorDni;
     }
 }

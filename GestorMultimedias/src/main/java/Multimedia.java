@@ -1,5 +1,7 @@
 import lombok.Data;
 
+import java.util.ArrayList;
+
 @Data
 abstract public class Multimedia {
 
@@ -8,8 +10,10 @@ abstract public class Multimedia {
     private String autor;
     private double tamanio;
     private String formato;
+    private ArrayList<Multimedia> elementos;
 
     public Multimedia() {
+        this.elementos = new ArrayList<>();
     }
 
     public Multimedia(int id, String titulo, String autor, double tamanio, String formato) {
@@ -21,12 +25,12 @@ abstract public class Multimedia {
     }
 
     public String mostrarInfo() {
-        return "Multimedia: " +
-                "ID - " + id +
-                ", Titulo='" + titulo + '\'' +
-                ", Autor='" + autor + '\'' +
-                ", Tamaño=" + tamanio +
-                ", Formato='" + formato;
+        return "Multimedia: "+ getClass() +
+                " ID - " + id +
+                ", Titulo= '" + titulo + '\'' +
+                ", Autor= '" + autor + '\'' +
+                ", Tamaño= " + tamanio +
+                ", Formato= '" + formato + '\'';
     }
 
 }

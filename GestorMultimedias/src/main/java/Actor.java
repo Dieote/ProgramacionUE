@@ -15,6 +15,6 @@ public class Actor {
     }
 
     public String mostrarDatosActor(){
-        return "Nombre Actor: " + nombreActor + "DNI: " + actorDni;
+        return "Nombre Actor: " + nombreActor + " - DNI: " + actorDni;
     }
 }

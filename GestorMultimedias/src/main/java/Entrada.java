@@ -1,12 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Entrada {
 
-    private static final List<Multimedia> coleccionMultimedia = new ArrayList<>();
-    private static final Scanner input = new Scanner(System.in);
+    private static ArrayList<Multimedia> coleccionMultimedia = new ArrayList<>();
+    private static Scanner input = new Scanner(System.in);
+
+    static {
+        coleccionMultimedia.addAll(Libro.librosEnBiblioteca);
+        coleccionMultimedia.addAll(Audio.audiosEnAudioteca);
+        coleccionMultimedia.addAll(Video.videosEnVideoteca);
+    }
+
 
     public static void main(String[] args) {
 
@@ -40,7 +46,6 @@ public class Entrada {
     }
 
     //Funciones del switch
-
     private static void agregarElemento(){
         System.out.println("Que tipo de elemento multimedia quieres agregar?");
         System.out.println("1. Libro");
@@ -54,7 +59,7 @@ public class Entrada {
         int identificador = input.nextInt();
         input.nextLine();
 
-       if (coleccionMultimedia.stream().anyMatch((m -> m.getId() == identificador))){ //no utilizo equals porque es int id , no string
+       if (coleccionMultimedia.stream().anyMatch(m -> m.equals(identificador))){ //no utilizo equals porque es int id , no string
             System.out.println("Ya existe un elemento multimedia con ese ID. Intente nuevamente.");
             return;
         }
@@ -117,7 +122,7 @@ public class Entrada {
         System.out.println("Ingrese el identificador del elemento a eliminar.");
         int idEliminar = input.nextInt();
 
-        if (!coleccionMultimedia.removeIf(elemento -> elemento.getId() == idEliminar)) {
+        if (!coleccionMultimedia.removeIf(elemento -> elemento.equals(idEliminar))) {
             System.out.println("Error al eliminar elemento.");
         } else {
             System.out.println("Elemento eliminado correctamente.");
@@ -130,23 +135,27 @@ public class Entrada {
         int tipo = input.nextInt();
         input.nextLine();
 
-        List<Multimedia> buscados;
+        List<Multimedia> buscados = new ArrayList<>();
         switch (tipo){
             case 1:
                 System.out.println("** Mostrando BIBLIOTECA..");
-                buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Libro).collect(Collectors.toList());
+               // buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Libro).collect(Collectors.toList());
                 break;
             case 2:
                 System.out.println("** Mostrando VIDEOTECA..");
-                buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Video).collect(Collectors.toList());
+               // buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Video).collect(Collectors.toList());
                 break;
             case 3:
                 System.out.println("** Mostrando AUDIOTECA..");
-                buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Audio).collect(Collectors.toList());
+              //  buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Audio).collect(Collectors.toList());
                 break;
             case 4:
-                System.out.println("** Mostrando TODOS los elementos existentes..");
-                buscados = new ArrayList<>(coleccionMultimedia);
+                if (!coleccionMultimedia.isEmpty()) {
+                    System.out.println("** Mostrando TODOS los elementos existentes..");
+                    buscados.addAll(coleccionMultimedia);
+            } else {
+                    System.out.println("La colección multimedia está vacía.");
+                }
                 break;
             default:
                 System.out.println("Opcion no valida. Intente nuevamente.");
@@ -155,8 +164,8 @@ public class Entrada {
         if (buscados.isEmpty()) {
             System.out.println("No hay elementos para mostrar.");
         } else {
-            buscados.forEach(Multimedia::mostrarInfo);
+            buscados.forEach(multimedia -> System.out.println(multimedia.mostrarInfo()));
         }
     }
 
-    }
+  }
