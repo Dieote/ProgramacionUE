@@ -32,5 +32,4 @@ abstract public class Multimedia {
                 ", Tamaño= " + tamanio +
                 ", Formato= '" + formato + '\'';
     }
-
 }

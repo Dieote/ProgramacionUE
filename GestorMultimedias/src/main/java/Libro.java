@@ -38,4 +38,15 @@ public class Libro extends Multimedia{
         return super.mostrarInfo() + "\n** ISBN= " + ISBN +
                 ", Numero de Paginas= " + numeroPaginas;
     }
+
+   /*  public Libro buscarAutor(String autor) {
+        for (Libro elemento : librosEnBiblioteca) {
+            if (elemento.getAutor().equalsIgnoreCase(autor)) {
+                return elemento;
+            } else {
+                System.out.println("No se encontró el autor.");
+            }
+        }
+        return null;
+    }*/
 }

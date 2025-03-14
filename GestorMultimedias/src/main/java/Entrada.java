@@ -22,7 +22,8 @@ public class Entrada {
             System.out.println("1. Añadir a la colección");
             System.out.println("2. Eliminar de la colección");
             System.out.println("3. Listar elementos");
-            System.out.println("4. Salir");
+            System.out.println("4. Buscar Elemento Por...");
+            System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = input.nextInt();
             input.nextLine();
@@ -37,12 +38,15 @@ public class Entrada {
                         listarElemento();
                         break;
                     case 4:
+                        buscarElementoPor();
+                        break;
+                    case 5:
                         System.out.println("Saliendo del programa...");
                         break;
                     default:
                         System.out.println("Opcion no valida. Intente nuevamente.");
                 }
-        } while (opcion!=4);
+        } while (opcion!=5);
     }
 
     //Funciones del switch
@@ -59,6 +63,7 @@ public class Entrada {
         int identificador = input.nextInt();
         input.nextLine();
 
+            //Restriccion de ID
        if (coleccionMultimedia.stream().anyMatch(m -> m.equals(identificador))){ //no utilizo equals porque es int id , no string
             System.out.println("Ya existe un elemento multimedia con ese ID. Intente nuevamente.");
             return;
@@ -129,26 +134,37 @@ public class Entrada {
         }
     }
 
-    //Revisar metodo
     private static void listarElemento(){
-        System.out.println("Que elementos quieres listar 1. Libros | 2- Videos | 3. Audios | 4. Todos");
+        System.out.println("Que elementos quieres listar 1. Libros | 2. Videos | 3. Audios | 4. Todos");
         int tipo = input.nextInt();
         input.nextLine();
 
         List<Multimedia> buscados = new ArrayList<>();
         switch (tipo){
             case 1:
+            if (!Libro.librosEnBiblioteca.isEmpty()) {
                 System.out.println("** Mostrando BIBLIOTECA..");
-               // buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Libro).collect(Collectors.toList());
-                break;
+                buscados.addAll(Libro.librosEnBiblioteca);
+        } else {
+                System.out.println("La BIBLIOTECA está vacía.");
+            }
+               break;
             case 2:
+               if (!Video.videosEnVideoteca.isEmpty()) {
                 System.out.println("** Mostrando VIDEOTECA..");
-               // buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Video).collect(Collectors.toList());
-                break;
+                buscados.addAll(Video.videosEnVideoteca);
+        } else {
+                System.out.println("La VIDEOTECA está vacía.");
+            } 
+               break;
             case 3:
+            if (!Audio.audiosEnAudioteca.isEmpty()) {
+                buscados.addAll(Audio.audiosEnAudioteca);
                 System.out.println("** Mostrando AUDIOTECA..");
-              //  buscados = coleccionMultimedia.stream().filter(cinta -> cinta instanceof Audio).collect(Collectors.toList());
-                break;
+        } else {
+                System.out.println("La AUDIOTECA está vacía.");
+            } 
+            break;
             case 4:
                 if (!coleccionMultimedia.isEmpty()) {
                     System.out.println("** Mostrando TODOS los elementos existentes..");
@@ -168,4 +184,33 @@ public class Entrada {
         }
     }
 
+    //Agregar metodo de busqueda por....
+
+    private static void buscarElementoPor(){
+        System.out.println("1. Autor");
+        System.out.println("2. Actor/Actriz ");
+        System.out.println("3. Director");
+        System.out.print("Seleccione una opción: ");
+        int tipo = input.nextInt();
+        input.nextLine();
+
+        switch (tipo){
+            case 1:
+                System.out.print("Ingrese el nombre del autor: ");
+                String escritor = input.nextLine();
+                //coleccionMultimedia.forEach(multimedia -> multimedia.buscarAutor(autor));
+                Libro.librosEnBiblioteca.stream()
+                    .filter(libro -> libro.getAutor().equalsIgnoreCase(escritor))
+                    .forEach(libro -> System.out.println(libro.mostrarInfo()));
+                break;
+            case 2:
+    //private static void buscarPorArtista(){};
+    break;
+            case 3:
+    //private static void buscarPorDirector(){};4
+    break;
+            default:
+                System.out.println("Opcion no valida. Intente nuevamente.");
+    };
   }
+}
