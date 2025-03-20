@@ -1,0 +1,4 @@
+Crea una aplicación que permita gestionar el catálogo de una biblioteca. Para ello la aplicación debe
+permitir al usuario realizar operaciones básicas de gestión de la biblioteca, tales como agregar libros,
+eliminar libros, buscar libros por ISBN, y mostrar todos los libros disponibles. Las características de la
+biblioteca son: nombre, director, catalogo
