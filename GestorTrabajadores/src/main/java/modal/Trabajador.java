@@ -1,3 +1,5 @@
+package modal;
+
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ abstract public class Trabajador {
                 ", DNI= Nº " + dni  + ", Salario=" + salario + ".");
     }
 
-    private static boolean existeDni(ArrayList<Trabajador> empleados, String dni){
+    public boolean existeDni(ArrayList<Trabajador> empleados, String dni){
         return empleados.stream().anyMatch(trabajador -> trabajador.getDni().equals(dni));
     }
 

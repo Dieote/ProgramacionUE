@@ -1,3 +1,5 @@
+package modal;
+
 import lombok.Data;
 
 @Data
@@ -5,6 +7,8 @@ public class Jefe extends Trabajador {
 
     public String rol = "JEFE";
     public double acciones;
+
+    public Jefe(){}
 
     public Jefe(double acciones) {
         this.acciones = acciones;

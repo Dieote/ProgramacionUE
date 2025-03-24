@@ -1,4 +1,9 @@
+package controller;
+
 import lombok.Data;
+import modal.Jefe;
+import modal.Trabajador;
+
 import java.util.ArrayList;
 
 @Data

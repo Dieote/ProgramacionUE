@@ -1,3 +1,9 @@
+import controller.Empresa;
+import modal.Asalariado;
+import modal.Autonomo;
+import modal.Jefe;
+import modal.Trabajador;
+
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +21,7 @@ public class Main {
             System.out.println("3. Buscar empleado por DNI.");
             System.out.println("4. Listar empleados.");
             System.out.println("5. Eliminar empleados.");
-            System.out.println("6. Salir");
+            System.out.println("6. Salir.");
             System.out.printf("%nSeleccione una opción: ");
             option = input.nextInt();
             input.nextLine();
@@ -29,7 +35,7 @@ public class Main {
                     System.out.print("Opción: ");
                     tipo = input.nextInt();
                     input.nextLine();
-                    System.out.println("Ingrese los datos del trabajador::");
+                    System.out.println("Ingrese los datos del trabajador:");
                     System.out.print("Ingrese nombre: ");
                     String nombre = input.nextLine();
                     System.out.print("Ingrese apellido: ");
@@ -63,7 +69,7 @@ public class Main {
 
                 case 2:
                     System.out.println("** Buscar empleado por NOMBRE. **");
-                    System.out.println("Ingrese nombre a buscar:.");
+                    System.out.println("Ingrese nombre a buscar: ");
                     String nombreABuscar = input.nextLine();
                     Trabajador empleadoPorNombre = empresa.buscarNombre(nombreABuscar);
 
@@ -76,7 +82,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("** Buscar empleado por DNI. **");
-                    System.out.println("Ingrese nombre a buscar:.");
+                    System.out.println("Ingrese nombre a buscar: ");
                     String dniABuscar = input.nextLine();
                     Trabajador empleadoPorDni = empresa.buscarDni(dniABuscar);
 
@@ -105,7 +111,7 @@ public class Main {
                     empresa.DespedirTrabajador(dniAEliminar);
                     break;
                 case 6:
-                    System.out.println("Saliendo del programa");
+                    System.out.println("Saliendo del programa.");
                     break;
             }
         } while (option != 6);

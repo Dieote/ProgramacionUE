@@ -1,9 +1,13 @@
+package modal;
+
 import lombok.Data;
 @Data
 public class Autonomo extends Trabajador {
 
     private boolean contratado;
     private double comision = 0.50;
+
+    public Autonomo(){}
 
     public Autonomo(boolean contratado) {
         this.contratado = contratado;
