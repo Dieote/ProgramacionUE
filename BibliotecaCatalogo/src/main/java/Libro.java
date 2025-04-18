@@ -24,6 +24,15 @@ public class Libro {
         this.isbn = isbn;
     }
 
+    public Libro(String nombre, String autor, int paginas, String seccion, String isbn) {
+        id = id;
+        this.nombre = nombre;
+        this.autor = autor;
+        this.paginas = paginas;
+        this.seccion = seccion;
+        this.isbn = isbn;
+    }
+
     public String mostrarDatos(){
         return "*" + id + " - " + nombre + " - Autor: " + autor + " - Nº Paginas: " + paginas + " | Seccion: " + seccion + "-" + isbn;
     }
