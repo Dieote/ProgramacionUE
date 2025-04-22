@@ -34,7 +34,19 @@ public class Libro {
     }
 
     public String mostrarDatos(){
-        return "*" + id + " - " + nombre + " - Autor: " + autor + " - Nº Paginas: " + paginas + " | Seccion: " + seccion + "-" + isbn;
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Libro *{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", autor='" + autor + '\'' +
+                ", paginas=" + paginas +
+                ", seccion='" + seccion + '\'' +
+                ", isbn='" + isbn + '\'' +
+                '}';
     }
 }
 

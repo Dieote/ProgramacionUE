@@ -1,46 +1,47 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import Excepciones.*;
+import lombok.Data;
 
+import java.util.ArrayList;
+
+@Data
 public class Catalogo {
 
     private ArrayList<Libro> libros;
     private int capacidad;
-    private static Scanner input = new Scanner(System.in);
-
 
     public Catalogo(int capacidad) {
         this.capacidad = capacidad;
         this.libros = new ArrayList<>();
     }
 
-    public void agregarLibro(Libro libro){
-        System.out.println("Ingrese los datos del libro...");
-        System.out.println("Ingrese nombre: ");
-            String nombre = input.nextLine();
-        System.out.println("Ingrese Autor: ");
-            String autor = input.nextLine();
-        System.out.println("Ingrese numero de paginas: ");
-            int paginas = input.nextInt();
-        System.out.println("Ingrese la seccion a la que pertenece: ");
-            String seccion = input.nextLine();
-        System.out.println("Ingrese la seccion a la que pertenece: ");
-            String isbn = input.nextLine();
-        libros.add(new Libro(nombre, autor, paginas, seccion, isbn));
-    }
-
-    public void eliminarLibro(String isbn){
-            System.out.println("Ingrese el ISBN para eliminar un libro.");
-                String isbnElimanar = input.nextLine();
-
-        if (libros.removeIf(libro -> libro.equals(isbnElimanar))) {
-            System.out.println("Elemento eliminado correctamente.");
-        } else {
-            System.out.println("Error al intentar eliminar.");
+    public void agregarLibroEnCatalogo(Libro libro) throws ExceptionEspacioInsuficiente {
+        if (libros.size() >= capacidad){
+            throw new ExceptionEspacioInsuficiente("❌ No hay espacion el catalogo.");
         }
+        if (libros.stream().anyMatch(l -> l.getIsbn().equalsIgnoreCase(libro.getIsbn()))){
+            System.out.println("❌ Este libro existe en el catalogo actual.");
+            return;
+        }
+        libros.add(libro);
     }
 
-    public void buscarLibro(String isbn){}
+    public boolean eliminarLibroEnCatalogo(String isbn){
+        return libros.removeIf(libro -> libro.getIsbn().equalsIgnoreCase(isbn));
+    }
 
-    public void listarLibros(){}
+    public Libro buscarLibroEnCatalogo(String isbn) throws ExceptionLibroNoEncontrado {
+               return libros.stream()
+                .filter(libro -> libro.getIsbn().equalsIgnoreCase(isbn))
+                .findFirst()
+                .orElseThrow(() -> new ExceptionLibroNoEncontrado("❌ Libro no encontrado con ISBN: " + isbn));
+        }
+
+    public void listarLibrosEnCatalogo(){
+        if (libros.isEmpty()){
+            System.out.println("❌ No hay libros en el catalogo actual.");
+            return;
+        }
+        libros.forEach(libro -> System.out.println(libro.mostrarDatos()));
+    }
 
 }
