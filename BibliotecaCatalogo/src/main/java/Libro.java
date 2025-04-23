@@ -1,36 +1,26 @@
+import Enums.Genero;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Data
-public class Libro {
+abstract public class Libro  implements Serializable {
 
-    private int id;
     private String nombre;
     private String autor;
     private int paginas;
-    private String seccion;
     private String isbn;
-    //private boolean disponibilidad;
+    private Genero genero;
 
     public Libro(){}
 
-    public Libro( int id, String nombre, String autor, int paginas, String seccion, String isbn) {
-        this.id = id;
+    public Libro( String nombre, String autor, int paginas, String isbn, Genero genero) {
         this.nombre = nombre;
         this.autor = autor;
         this.paginas = paginas;
-        this.seccion = seccion;
         this.isbn = isbn;
-    }
-
-    public Libro(String nombre, String autor, int paginas, String seccion, String isbn) {
-        id = id;
-        this.nombre = nombre;
-        this.autor = autor;
-        this.paginas = paginas;
-        this.seccion = seccion;
-        this.isbn = isbn;
+        this.genero = genero;
     }
 
     public String mostrarDatos(){
@@ -39,12 +29,9 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro *{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
+        return "Libro *{" + nombre + '\'' +
                 ", autor='" + autor + '\'' +
                 ", paginas=" + paginas +
-                ", seccion='" + seccion + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';
     }
