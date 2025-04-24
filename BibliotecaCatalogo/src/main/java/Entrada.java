@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Entrada {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExceptionEspacioInsuficiente {
 
         Scanner input = new Scanner(System.in);
 
@@ -15,11 +15,11 @@ public class Entrada {
         bibliotecaEspania.construirCatalogo(4);
         System.out.println("Catalago creado con capacidad de 4 libros.");
 
-        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroTerror("It", "Stephen King", 1000, "111", 4.5));
-        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroComedia("Don Quijote", "Cervantes", 900, "222", TipoHumor.SATIRICO));
-        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroPoliciaco("Sherlock Holmes", "Conan Doyle", 300, "333", TramaPoliciaca.MISTERIO, "Sherlock, Watson"));
-        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroTerror("El Resplandor", "Stephen King", 500, "444", 4.8));
-        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroComedia("Los Simpsons", "Matt Groening", 250, "555", TipoHumor.ABSURDO)); // aquí se debe lanzar excepción
+        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroTerror("It", "Stephen King", 1000, "111AAA", 4.5));
+        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroComedia("Don Quijote", "Cervantes", 900, "222AAA", TipoHumor.SATIRICO));
+        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroPoliciaco("Sherlock Holmes", "Conan Doyle", 300, "333AAA", TramaPoliciaca.MISTERIO, "Sherlock, Watson"));
+        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroTerror("El Resplandor", "Stephen King", 500, "444AAA", 4.8));
+        bibliotecaEspania.agregarLibroEnBiblioteca(new LibroComedia("Los Simpsons", "Matt Groening", 250, "555AAA", TipoHumor.ABSURDO)); // aquí se debe lanzar excepción
 
         int opcion;
 
@@ -48,12 +48,72 @@ public class Entrada {
                     biblioteca = new Biblioteca(nombre,director,null);
                     System.out.println("Se creo la biblioteca correctamente.");
                     break;
-                    
+
                 case 2:
+                    if (biblioteca == null){
+                        System.out.println("❌ Debes crear la biblioteca primero.");
+                    } else {
+                        System.out.println("Capacidad del catalogo: ");
+                        int capacidad = input.nextInt();
+                        input.nextLine();
+                        biblioteca.construirCatalogo(capacidad);
+                        System.out.printf("Se creo el catalogo con capacidad %d en %s ", capacidad ,biblioteca.getNombre());
+                    }
                     break;
                 case 3:
+                    if (biblioteca == null || biblioteca.getCatalogo() == null){
+                        System.out.println("❌ Biblioteca o catalogo no existen.");
+                        break;
+                    }
+                    System.out.println("Selecciona el genero del libro: ");
+                    for (Genero genre : Genero.values()){
+                        System.out.printf(" - %s", genre);
+                    }
+                    System.out.println("\nEscriba el genero elegido: ");
+                    Genero genero = Genero.valueOf(input.nextLine().toUpperCase());
+                    System.out.println("Nombre del libro: ");
+                    String nombreLibro = input.nextLine();
+                    System.out.println("Nombre del autor: ");
+                    String autorLibro = input.nextLine();
+                    System.out.println("Numero de paginas: ");
+                    int paginasLibro = input.nextInt();
+                    input.nextLine();
+                    System.out.println("ISBN: ");
+                    String isbnLibro = input.nextLine();
+
+                    Libro libro = null;
+
+                    switch (genero) {
+                        case TERROR:
+                            System.out.print("Calificación: ");
+                            double calificacion = input.nextDouble();
+                            input.nextLine();
+                            libro = new LibroTerror(nombreLibro, autorLibro, paginasLibro, isbnLibro, calificacion);
+                            break;
+                        case COMEDIA:
+                            System.out.println("Tipo de humor (NEGRO, SATIRICO, ABSURDO, BLANCO): ");
+                            TipoHumor humor = TipoHumor.valueOf(input.nextLine().toUpperCase());
+                            libro = new LibroComedia(nombreLibro, autorLibro, paginasLibro, isbnLibro, humor);
+                            break;
+                        case POLICIACA:
+                            System.out.println("Trama (MISTERIO o INTROGA): ");
+                            TramaPoliciaca trama = TramaPoliciaca.valueOf(input.nextLine().toUpperCase());
+                            System.out.print("Personajes principales: ");
+                            String personajes = input.nextLine();
+                            libro = new LibroPoliciaco(nombreLibro, autorLibro, paginasLibro, isbnLibro, trama, personajes);
+                            break;
+                    }
+
+                    biblioteca.agregarLibroEnBiblioteca(libro);
                     break;
                 case 4:
+                    System.out.println("Indique el ISBN del libro a eliminar: ");
+                    String isbnEliminar = input.nextLine();
+                    if (biblioteca != null) {
+                        biblioteca.eliminarLibroEnBiblioteca(isbnEliminar);
+                    } else {
+                        throw new ExceptionBibliotecaNoExiste("❌ No se puede eliminar o la biblioteca no existe.");
+                    }
                     break;
                 case 5:
                     break;
