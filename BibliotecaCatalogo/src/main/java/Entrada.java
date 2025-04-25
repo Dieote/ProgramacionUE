@@ -1,5 +1,7 @@
 import Enums.*;
 import Excepciones.*;
+
+import java.io.*;
 import java.util.Scanner;
 
 public class Entrada {
@@ -139,6 +141,17 @@ public class Entrada {
                     }
                     break;
                 case 8:
+                    if (biblioteca == null || biblioteca.getCatalogo() == null) {
+                        System.out.println("❌ No existe biblioteca o catálogo.");
+                        break;
+                    }
+
+                    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("libros.obj"))) {
+                        out.writeObject(biblioteca.getCatalogo().getLibros());
+                        System.out.println("✅ Libros exportados a 'libros.obj'");
+                    } catch (IOException e) {
+                        System.out.println("❌ Error al exportar: " + e.getMessage());
+                    }
                     break;
                 case 9:
                     System.out.println("👋 Cerrando aplicación...");

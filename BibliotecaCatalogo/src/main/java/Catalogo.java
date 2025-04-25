@@ -1,11 +1,13 @@
 import Excepciones.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
 
 @Data
 public class Catalogo {
 
+    @Getter
     private ArrayList<Libro> libros;
     private int capacidad;
 
