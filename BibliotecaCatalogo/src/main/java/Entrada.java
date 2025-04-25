@@ -98,7 +98,7 @@ public class Entrada {
                             libro = new LibroComedia(nombreLibro, autorLibro, paginasLibro, isbnLibro, humor);
                             break;
                         case POLICIACA:
-                            System.out.println("Trama (MISTERIO o INTROGA): ");
+                            System.out.println("Trama (MISTERIO o INTRIGA): ");
                             TramaPoliciaca trama = TramaPoliciaca.valueOf(input.nextLine().toUpperCase());
                             System.out.print("Personajes principales: ");
                             String personajes = input.nextLine();
