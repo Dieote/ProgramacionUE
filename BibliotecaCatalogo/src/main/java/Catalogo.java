@@ -41,7 +41,9 @@ public class Catalogo {
             System.out.println("❌ No hay libros en el catalogo actual.");
             return;
         }
-        libros.forEach(libro -> System.out.println(libro.mostrarDatos()));
+        for (Libro libro : libros) {
+            System.out.println(libro.mostrarDatos());
+        }
     }
 
 }

@@ -57,7 +57,7 @@ public class Entrada {
                         int capacidad = input.nextInt();
                         input.nextLine();
                         biblioteca.construirCatalogo(capacidad);
-                        System.out.printf("Se creo el catalogo con capacidad %d en %s ", capacidad ,biblioteca.getNombre());
+                        System.out.printf("Se creo el catalogo con capacidad %d en Biblioteca %s ", capacidad ,biblioteca.getNombre());
                     }
                     break;
                 case 3:
@@ -116,15 +116,35 @@ public class Entrada {
                     }
                     break;
                 case 5:
+                    System.out.print("ISBN a buscar: ");
+                    String isbnBuscar = input.nextLine();
+                    if (biblioteca != null) {
+                        biblioteca.buscarLibroEnBiblioteca(isbnBuscar);
+                    }else {
+                        throw new ExceptionBibliotecaNoExiste("❌ No se puede buscar o la biblioteca no existe.");
+                    }
                     break;
                 case 6:
+                    if (biblioteca != null) {
+                        biblioteca.mostrarTodosLosLibrosEnBiblioteca();
+                    } else {
+                        throw new ExceptionBibliotecaNoExiste("❌ No se puede mostrar o la biblioteca no existe.");
+                    }
                     break;
                 case 7:
+                    if (biblioteca != null) {
+                        biblioteca.consultarNumeroLibrosEnBiblioteca();
+                    } else {
+                        throw new ExceptionBibliotecaNoExiste("❌ No se puede consultar o la biblioteca no existe.");
+                    }
                     break;
                 case 8:
                     break;
                 case 9:
+                    System.out.println("👋 Cerrando aplicación...");
                     break;
+                default:
+                    System.out.println("❌ Opción inválida.");
 
             }
         } while (opcion != 9);

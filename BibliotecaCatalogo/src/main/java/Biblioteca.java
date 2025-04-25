@@ -70,17 +70,19 @@ public class Biblioteca {
     }
 
     public void mostrarTodosLosLibrosEnBiblioteca(){
-        if (this.catalogo == null){
+        if (this.catalogo != null){
+            this.catalogo.listarLibrosEnCatalogo();
+        }else {
             throw new ExceptionCatalogoNoExiste("❌ No se puede mostrar o el catalogo no existe.");
         }
-        this.catalogo.listarLibrosEnCatalogo();
     }
 
     public void consultarNumeroLibrosEnBiblioteca(){
-        if (this.catalogo == null) {
+        if (this.catalogo != null) {
+            System.out.println("La biblioteca tiene " + this.catalogo.getLibros().size() + " libro(s) en el catálogo.");
+        }else {
             throw new ExceptionCatalogoNoExiste("No se puede consultar el número de libros porque el catálogo no existe.");
         }
-        System.out.println("La biblioteca tiene " + this.catalogo.getLibros().size() + " libro(s) en el catálogo.");
     }
 
 }

@@ -24,12 +24,7 @@ abstract public class Libro  implements Serializable {
     }
 
     public String mostrarDatos(){
-        return toString();
-    }
-
-    @Override
-    public String toString() {
-        return "Libro *{" + nombre + '\'' +
+             return "Libro *{" + nombre + '\'' +
                 ", autor='" + autor + '\'' +
                 ", paginas=" + paginas +
                 ", isbn='" + isbn + '\'' +
