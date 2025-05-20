@@ -1,0 +1,35 @@
+2.	Supongamos que se desea implementar una aplicación para calcular el perímetro de diferentes figuras geométricas.
+Las figuras que se deben soportar son: círculos, rectángulos y triángulos.
+Para ello, se definirá una clase Figura2D de la que heredarán las figuras anteriores y una interfaz
+FiguraGeometrica con un método para calcular el perímetro que implementará Figura2D.
+Vamos paso por paso:
+
+1) Crea las clases Círculo, Rectángulo y Triángulo. Circulo tendrá como atributos un nombre y el radio,
+tendrá un constructor que recibe sus atributos por parámetro y los getters y setters de los atributos.
+Rectángulo tendrá como atributos un nombre, la longitud de la base y la longitud de la altura, un constructor que
+recibe sus atributos por parámetro y los getters y setters de los atributos.
+Triángulo tendrá como atributos un nombre y
+la longitud de los tres lados, un constructor que recibe sus atributos por parámetro y los getters y setters de los atributos.
+
+Recuerda que el perímetro del cículo es 2 * Math.PI * radio. El de un triángulo y el de un rectángulo es la suma de la
+longitud de sus lados.
+
+Además, se definirán en cada clase los métodos toString que imprimirá por pantalla todos los atributos del objeto y el
+método equals que indicará que un objeto es igual a otro únicamente si son iguales todos sus atributos (1,5 puntos)
+
+2) Nos hemos dado cuenta de que las 3 clases comparten un atributo en común así que crearemos una clase Figura2D que
+tendrá como atributo el nombre de la figura, un constructor que recibe este atributo como parámetro y los getters y setters
+de dicho atributo. Modificaremos las clases creadas en el punto 1 para que hereden de Figura2D, recuerda que habrá que
+modificar algunos métodos para no repetir código. (0,5 puntos)
+
+3) Crea la interfaz FiguraGeometrica con el método "double calcularPerimetro()". (0,25 puntos)
+
+4) Modifica Figura2D para que sea una clase abstracta que implemente FiguraGeometrica, deja el método calcularPerimetro()
+como abstracto. (0,25 puntos)
+
+5) Modifica Círculo, Rectángulo y Triángulo para que implementen el método calcularPerimetro(). (0,25 puntos)
+
+6) Crea una clase Prueba con una función main en la que se declara un array unidimensional o un ArrayList de tipo Figura2D,
+que contenga círculos, rectángulos y triángulos. Recorre la estructura y muestra por pantalla para cada figura su nombre y su
+perímetro. (0,1 puntos con array multidimensional; 0,25 puntos con ArrayList)
+Subir los archivos: Circulo.java, Rectangulo.java, Triangulo.java, Figura2D.java, FiguraGeometrica.java y Prueba.java.
