@@ -1,0 +1,32 @@
+1.	Supongamos que queremos implementar una clase "Estudiante" en Java que tenga como atributos el nombre, la edad y tres notas.
+Crea la clase Estudiante con los atributos nombrados, un constructor que reciba por parámetro todos los atributos y los inicialice al
+ valor dado,
+los getters de todos los atributos y un método que calcule la nota media del estudiante. Define también el método toString que imprimirá
+por pantalla todos los atributos del objeto y el método equals que indicará que un objeto tipo Estudiante es igual a otro únicamente
+ si son iguales todos sus atributos. (1,5 puntos)
+
+En la misma clase crea un método main en el que se inicialicen 2 estudiantes con los siguientes datos:
+
+Nombre: Juan Edad: 27 Nota1: 3.2 Nota2: 5.6 Nota3: 8.3
+Nombre: Ana Edad: 35 Nota1: 7.4 Nota2: 6.5 Nota3: 9
+
+Estos dos estudiantes se añadirán a un array unidimensional o un ArrayList. Además, se mostrará por pantalla el nombre, edad y
+nota media de cada estudiante. (0,25 puntos si se usa array unidimensional; 0,5 puntos si se usa ArrayList).
+
+Queremos leer los datos del fichero de texto adjunto "estudiantes.txt" en el que cada línea contiene los datos de un
+ estudiante separados por comas: el nombre, la edad y las tres notas.
+
+Para ello, implementaremos un método estático dentro de la clase Estudiante que reciba el nombre del fichero como parámetro y
+devuelva un array unidimensional (en este caso de dimensión 2, el número de líneas que tiene el fichero "estudiantes.txt") o un ArrayList
+de objetos de la clase Estudiante. Si el fichero no existe, se lanzará una excepción de tipo
+IOException. (1 punto si se usa array unidimensional; 1,25 puntos si se usa ArrayList).
+
+La firma de dicho método sería la siguiente:
+
+public static ArrayList<Estudiante> leerEstudiantes(String nombreFichero) throws IOException
+
+public static Estudiante[] leerEstudiantes(String nombreFichero) throws IOException
+
+Por último, modificaremos el main anterior añadiendo el uso del método para obtener la lista de estudiantes y la mostraremos por pantalla. (0,25 puntos)
+
+Recordar que para leer ficheros de datos podemos utilizar: BufferedReader br = new BufferedReader(new FileReader("estudiantes.txt"));
