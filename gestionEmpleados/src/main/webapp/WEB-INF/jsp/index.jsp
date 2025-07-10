@@ -8,6 +8,26 @@
             <h3>Sistema de Empleados</h3>
         </div>
 
+        <form class="row g-3 mb-4" method="get" action="${pageContext.request.contextPath}/">
+            <div class="col-md-4">
+                <input type="text" name="nombreEmpleado" class="form-control" placeholder="Buscar por nombre.."
+                value="${nombreBuscado != null ? nombreBuscado : ''}">
+            </div>
+            <div class="col-md-4">
+                <select name="departamento" class="form-select">
+                    <option value="">-- Todos los departamentos --</option>
+                    <c:forEach var="dep" items="${departamentos}">
+                        <option value="${dep}" ${departamentoBuscado == dep ? 'selected' : ''}>${dep}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">Limpiar</a>
+            </div>
+        </form>
+
+
             <table class="table table-striped table-hover table-bordered align-middle">
                 <thead class="table-dark text-center">
                 <tr>

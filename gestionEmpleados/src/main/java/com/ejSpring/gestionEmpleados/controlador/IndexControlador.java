@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +26,32 @@ public class IndexControlador {
     EmpleadoServicio empleadoServicio;
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String iniciar(ModelMap modelo){
-        List<Empleado> empleados = empleadoServicio.listarEmpleado();
-        empleados.forEach((empleado) -> logger.info(empleado.toString()));
-        //Compartimos el modelo con la vista
-        modelo.put("empleados", empleados);
+    public String listarEmpleados(
+            @RequestParam(required = false) String nombreEmpleado,
+            @RequestParam(required = false) String departamento,
+            Model model){
+
+        List<Empleado> empleados;
+        if (nombreEmpleado != null && nombreEmpleado.trim().isEmpty()) {
+            nombreEmpleado = null;
+        }
+        if (departamento != null && departamento.trim().isEmpty()) {
+            departamento = null;
+        }
+
+        if ((nombreEmpleado != null && !nombreEmpleado.isEmpty()) ||
+                (departamento != null && !departamento.isEmpty())){
+            empleados = empleadoServicio.buscarPorNombreYDepartamento(nombreEmpleado, departamento);
+        } else {
+            empleados = empleadoServicio.listarEmpleado();
+        }
+        model.addAttribute("empleados", empleados);
+        model.addAttribute("nombreBuscado", nombreEmpleado);
+        model.addAttribute("departamentoBuscado", departamento);
+
+        List<String> departamentos = empleadoServicio.listarDepartamentosUnicos();
+        model.addAttribute("departamentos", departamentos);
+
         return "index";//index.jsp
     }
 

@@ -13,5 +13,6 @@ public interface IEmpleadoServicio {
 
     public void eliminarEmpleado(Empleado empleado);
 
-
+    public List<Empleado> buscarPorNombreYDepartamento(String nombreEmpleado, String departamento);
+    public List<String> listarDepartamentosUnicos();
 }

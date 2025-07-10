@@ -32,4 +32,14 @@ public class EmpleadoServicio implements IEmpleadoServicio{
     public void eliminarEmpleado(Empleado empleado) {
         empleadoRepositorio.delete(empleado);
     }
+
+    @Override
+    public List<Empleado> buscarPorNombreYDepartamento(String nombreEmpleado, String departamento) {
+        return empleadoRepositorio.buscarPorNombreYDepartamento(nombreEmpleado, departamento);
+    }
+
+    @Override
+    public List<String> listarDepartamentosUnicos() {
+        return empleadoRepositorio.listarDepartamentosUnicos();
+    }
 }
