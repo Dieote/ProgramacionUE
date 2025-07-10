@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ejSpring.gestionEmpleados.servicio.EmpleadoServicio;
 import com.ejSpring.gestionEmpleados.modelo.Empleado;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
@@ -42,5 +43,27 @@ public class IndexControlador {
         logger.info("Empleado a agregar: " + empleado);
         empleadoServicio.guardarEmpleado(empleado);
         return "redirect:/";//redirige al path "/"
+    }
+    @RequestMapping(value="/editar", method = RequestMethod.GET)
+    public String mostrarEditar(@RequestParam int idEmpleado, ModelMap modelo){
+        Empleado empleado = empleadoServicio.buscarIdEmpleado(idEmpleado);
+        logger.info("Empleado a editar: " + empleado);
+        modelo.put("empleado", empleado);
+        return "editar";//mostrar editar.jsp
+    }
+
+    @RequestMapping(value = "/editar", method = RequestMethod.POST)
+    public String editar(@ModelAttribute("empleadoForma") Empleado empleado){
+        logger.info("Empleado a guardar (editar): " + empleado);
+        empleadoServicio.guardarEmpleado(empleado);
+        return "redirect:/"; //redirigimos al controlador "/"
+    }
+
+    @RequestMapping(value = "/eliminar", method = RequestMethod.GET)
+    public String eliminar(@RequestParam int idEmpleado){
+        Empleado empleado = new Empleado();
+        empleado.setIdEmpleado(idEmpleado);
+        empleadoServicio.eliminarEmpleado(empleado);
+        return "redirect:/";
     }
 }
