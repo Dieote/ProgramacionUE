@@ -5,7 +5,7 @@
   <div class="text-center" style="margin: 30px">
     <h3>Agregar Empleado</h3>
   </div>
-  <form action="/gestionEmpleados/agregar" modelAttribute="empleadoForma" method="post">
+  <form action="${urlAgregar}" modelAttribute="empleadoForma" method="post">
     <div class="mb-3">
       <label for="nombreEmpleado" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="nombreEmpleado" name="nombreEmpleado" required="true">
