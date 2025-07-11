@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface EmpleadoRepositorio  extends JpaRepository<Empleado,Integer> {
+public interface EmpleadoRepositorio extends JpaRepository<Empleado, Integer> {
 
     List<Empleado> findByNombreEmpleadoContainingIgnoreCaseAndDepartamento(String nombreEmpleado, String departamento, Sort sort);
 
@@ -17,4 +17,11 @@ public interface EmpleadoRepositorio  extends JpaRepository<Empleado,Integer> {
 
     @Query("SELECT DISTINCT e.departamento FROM Empleado e")
     List<String> listarDepartamentosUnicos();
+
+    @Query("SELECT AVG(e.sueldo) FROM Empleado e")
+    Double calcularPromedioSueldos();
+
+    @Query("SELECT e.departamento, COUNT(e) FROM Empleado e GROUP BY e.departamento")
+    List<Object[]> contarEmpleadosPorDepartamento();
+
 }

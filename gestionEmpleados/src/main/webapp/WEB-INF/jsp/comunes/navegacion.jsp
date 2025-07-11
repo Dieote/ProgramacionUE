@@ -7,6 +7,10 @@
     <c:url value="${application.contextPath}/agregar" />
 </c:set>
 
+<c:set var="urlEstadisticas">
+        <c:url value="${application.contextPath}/estadisticas" />
+</c:set>
+
 <c:url var="urlAsc" value="">
     <c:param name="sort" value="sueldo"/>
     <c:param name="order" value="asc"/>
@@ -54,6 +58,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${urlAgregar}">Agregar Empleado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${urlEstadisticas}">Estadisticas</a>
                     </li>
                 </ul>
             </div>

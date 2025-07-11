@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class EmpleadoServicio implements IEmpleadoServicio{
@@ -63,4 +65,24 @@ public class EmpleadoServicio implements IEmpleadoServicio{
             return empleadoRepositorio.findAll(sort);
         }
     }
+
+    @Override
+    public Double obtenerPromedioSueldos() {
+        return empleadoRepositorio.calcularPromedioSueldos();
+    }
+
+    @Override
+    public Map<String, Long> contarEmpleadosPorDepartamento() {
+        List<Object[]> resultado = empleadoRepositorio.contarEmpleadosPorDepartamento();
+        return resultado.stream().collect(Collectors.toMap(
+                fila -> (String) fila[0],
+                fila -> (Long) fila[1]
+        ));
+    }
+
+    @Override
+    public Long contarDepartamentos() {
+        return (long) empleadoRepositorio.listarDepartamentosUnicos().size();
+    }
+
 }
