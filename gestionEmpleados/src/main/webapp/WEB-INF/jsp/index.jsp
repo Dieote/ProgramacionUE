@@ -23,10 +23,9 @@
             </div>
             <div class="col-md-4">
                 <button type="submit" class="btn btn-primary">Buscar</button>
-                <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">Limpiar</a>
+                <a href="${urlLimpiar}" class="btn btn-secondary">Limpiar</a>
             </div>
         </form>
-
 
             <table class="table table-striped table-hover table-bordered align-middle">
                 <thead class="table-dark text-center">
@@ -34,8 +33,11 @@
                     <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Departamento</th>
-                    <th scope="col">Sueldo</th>
-                    <th scope="col"></th>
+                    <th scope="col">Sueldo
+                    <a href="${urlAsc}" class="btn btn-sm ${order == 'desc' ? 'btn-light' : 'btn-success'} ms-1">↑</a>
+                        <a href="${urlDesc}" class="btn btn-sm ${order == 'asc' ? 'btn-light' : 'btn-success'}">↓</a>
+                        </th>
+                    <th scope="col">
                 </tr>
                 </thead>
                 <tbody>

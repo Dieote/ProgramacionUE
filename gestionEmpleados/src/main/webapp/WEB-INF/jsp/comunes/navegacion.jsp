@@ -7,6 +7,34 @@
     <c:url value="${application.contextPath}/agregar" />
 </c:set>
 
+<c:url var="urlAsc" value="">
+    <c:param name="sort" value="sueldo"/>
+    <c:param name="order" value="asc"/>
+     <c:if test="${not empty nombreBuscado}">
+            <c:param name="nombreEmpleado" value="${nombreBuscado}"/>
+        </c:if>
+        <c:if test="${not empty departamentoBuscado}">
+            <c:param name="departamento" value="${departamentoBuscado}"/>
+        </c:if>
+</c:url>
+
+<c:url var="urlDesc" value="">
+    <c:param name="sort" value="sueldo"/>
+    <c:param name="order" value="desc"/>
+     <c:if test="${not empty nombreBuscado}">
+            <c:param name="nombreEmpleado" value="${nombreBuscado}"/>
+        </c:if>
+        <c:if test="${not empty departamentoBuscado}">
+            <c:param name="departamento" value="${departamentoBuscado}"/>
+        </c:if>
+</c:url>
+
+<c:url var="urlLimpiar" value="/">
+    <c:param name="sort" value="idEmpleado"/>
+    <c:param name="order" value="asc"/>
+</c:url>
+
+
 <div class="container">
     <nav class="navbar navbar-expand-lg bg-primary"
          data-bs-theme="dark">

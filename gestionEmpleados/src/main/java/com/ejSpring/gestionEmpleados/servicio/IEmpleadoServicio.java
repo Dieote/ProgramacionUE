@@ -1,11 +1,13 @@
 package com.ejSpring.gestionEmpleados.servicio;
 
 import com.ejSpring.gestionEmpleados.modelo.Empleado;
+import org.springframework.data.domain.Sort;
+
 import java.util.List;
 
 public interface IEmpleadoServicio {
 
-    public List<Empleado> listarEmpleado();
+    public List<Empleado> listarEmpleado(Sort sort);
 
     public Empleado buscarIdEmpleado(Integer idEmpleado);
 
@@ -13,6 +15,9 @@ public interface IEmpleadoServicio {
 
     public void eliminarEmpleado(Empleado empleado);
 
-    public List<Empleado> buscarPorNombreYDepartamento(String nombreEmpleado, String departamento);
+    public List<Empleado> buscarPorNombreYDepartamento(String nombreEmpleado, String departamento, Sort sort);
+
     public List<String> listarDepartamentosUnicos();
+
+    List<Empleado> buscarConFiltro(String nombreEmpleado, String departamento, Sort sort);
 }
