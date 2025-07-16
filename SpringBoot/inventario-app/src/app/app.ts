@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ProductoLista } from "./producto-lista/producto-lista";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [ProductoLista],
+  imports: [RouterModule],
   templateUrl: './app.html',
   standalone: true
 })
