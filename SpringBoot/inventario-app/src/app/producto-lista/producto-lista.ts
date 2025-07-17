@@ -1,17 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { Producto } from '../producto';
 import { productoServicio } from '../producto.servicio';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-producto-lista',
   standalone: true,
-  imports: [],
   templateUrl: './producto-lista.html'
 })
 export class ProductoLista {
   productos : Producto[];
 
   private productoServicio = inject(productoServicio);
+  private enrutador = inject(Router);
 
   ngOnInit() {
     this.obtenerProductos();
@@ -26,4 +27,18 @@ export class ProductoLista {
         }
     });
   }
+
+   editarProducto(id: number){
+    this.enrutador.navigate(['editar-producto', id]);
+  }
+
+  eliminarProducto(id: number) {
+    this.productoServicio.eliminarProducto(id).subscribe(
+      {
+        next: (datos) => this.obtenerProductos(),
+        error: (errores) => console.log(errores)
+      }
+    );
+  }
+
 }

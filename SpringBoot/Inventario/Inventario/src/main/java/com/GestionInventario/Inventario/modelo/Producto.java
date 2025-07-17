@@ -19,4 +19,5 @@ public class Producto {
     private Double precio;
     @JsonProperty("existencia")
     private Integer existencia;
+
 }
