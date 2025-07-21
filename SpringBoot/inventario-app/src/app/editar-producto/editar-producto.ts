@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Producto } from "../producto";
-import { productoServicio } from "../producto.servicio";
 import { FormsModule } from "@angular/forms";
+import { productoServicio } from "../producto.servicio";
 
 @Component({
   selector: 'app-editar-producto',

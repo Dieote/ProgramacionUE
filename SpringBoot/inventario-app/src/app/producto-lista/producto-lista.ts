@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Producto } from '../producto';
-import { productoServicio } from '../producto.servicio';
 import { Router } from '@angular/router';
+import { productoServicio } from '../producto.servicio';
 
 @Component({
   selector: 'app-producto-lista',

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from './servicios/authService';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,15 @@ import { RouterModule } from '@angular/router';
 })
 export class App {
   title = 'inventario-app';
+
+  constructor(public authService: AuthService, public router: Router) {}
+
+  esAdmin(): boolean {
+    return this.authService.esAdmin();
+  }
+
+  cerrarSesion() {
+    this.authService.setUsuario(null); // limpia sesión
+    this.router.navigate(['/login']);
+  }
 }
