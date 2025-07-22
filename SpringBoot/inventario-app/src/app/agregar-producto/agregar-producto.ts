@@ -22,7 +22,7 @@ export class AgregarProducto {
   guardarProducto() {
     this.productoServicio.agregarProducto(this.producto).subscribe(
       {
-        next: (datos) => {
+        next: () => {
           this.irListaProductos();
         },
         error: (error: any) => { console.log(error) }

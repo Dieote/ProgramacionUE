@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from './servicios/authService';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './app.html',
   standalone: true
 })
 export class App {
   title = 'inventario-app';
 
-  constructor(public authService: AuthService, public router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   esAdmin(): boolean {
     return this.authService.esAdmin();

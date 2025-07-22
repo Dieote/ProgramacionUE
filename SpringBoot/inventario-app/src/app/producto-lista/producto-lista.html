@@ -22,7 +22,7 @@
                 <td>€ {{producto.precio}}</td>
                 <td>{{producto.existencia}}</td>
                 <td class="text-center">
-                <div>
+                <div *ngIf="authService.esAdmin()">
                   <button (click)="editarProducto(producto.idProducto)"
                   class="btn btn-warning btn-sm me-3">Editar</button>
                 <button (click)="eliminarProducto(producto.idProducto)" 
