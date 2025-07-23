@@ -1,14 +1,21 @@
-<div class="container">
-  <h2>Registro</h2>
+<div class="container mt-5" style="max-width: 500px;">
+  <div class="card shadow-lg">
+    <div class="card-body">
+  <h2 class="card-title text-center mb-4">Registro</h2>
+  
   <form (ngSubmit)="registrar()">
-    <div>
-      <label>Nombre de usuario</label>
-      <input [(ngModel)]="usuario.userName" name="userName" required />
+    <div class="mb-3">
+      <label for="username" class="form-label">Nombre de usuario</label>
+      <input type="text" id="username" class="form-control"
+      [(ngModel)]="usuario.userName" name="userName" required />
     </div>
-    <div>
-      <label>Contraseña</label>
-      <input type="password" [(ngModel)]="usuario.password" name="password" required />
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" id="password" class="form-control"
+       [(ngModel)]="usuario.password" name="password" required />
     </div>
-    <button type="submit">Registrarse</button>
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary" style="background-color: #8c0aef;">Registrarse</button>
+    </div>
   </form>
 </div>
